@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  nav 
+    if user !== undefined
+      a(href= '/').title MembersOnly
+      if user.membership === false && user.role !== 'admin'
+        a(href= user.adminURL).become-admin Become a admin
+        a(href= user.url).become-member Become a member
+      else if user.membership === false && user.role === 'admin'
+        a(href= user.url).become-member Become a member
+      else if user.membership === true && user.role !== 'admin'
+        a(href= user.adminURL).become-admin Become a admin
+      a(href='/add-message').add-message Add message
+      ul
+        li.dropdown
+          a.dropbtn(href='/')= user.userName
+          .dropdown-content
+            div.dropdown-container
+              div Membership active
+              div.membership-status #{user.membership}
+              div Signed in as a
+              div.user-role= user.role
+              a(href='/log-out') Logout
+    else 
+      a(href= '/').title MembersOnly
+      a(href='/log-in').log-in Log In
+      a(href='/sign-up').sign-up Sign Up
+    
+  if user !== undefined
+    if user.membership === true || user.role === 'admin'
+      .messages
+        each message in messages
+          div.message-container
+            div.username Posted by #{message.user.userName} #{message.timeElapsed}
+            div.title= message.title
+            div.message= message.message
+            if user.role === 'admin'
+              a(href=`/delete-message/${message._id}`).delete-message Delete
+    else 
+      .messages
+        each message in messages
+          div.message-container
+            div.title= message.title
+            div.message= message.message
+            if user !== undefined && user.role === 'admin'
+              a(href=`/delete-message/${message._id}`).delete-message Delete
+  else 
+    .messages
+        each message in messages
+          div.message-container
+            div.title= message.title
+            div.message= message.message
+            if user !== undefined && user.role === 'admin'
+              a(href=`/delete-message/${message._id}`).delete-message Delete

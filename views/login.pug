@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+    nav 
+      a(href= '/').title MembersOnly
+    form.login-form(action="", method="POST")
+        .form-group 
+            label(for="username") UserName
+            input(type="text", name='username', id='username')
+        .form-group
+            label(for="password") Password
+            input(type="password", name='password', id='password')
+            if errorMessage 
+                div= errorMessage
+        .form-group
+            input(type="submit", value='submit')  

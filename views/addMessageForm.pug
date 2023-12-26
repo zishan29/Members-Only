@@ -1,0 +1,31 @@
+extends layout
+
+block content 
+    nav 
+      a(href= '/').title MembersOnly
+      if user.membership === false && user.role !== 'admin'
+        a(href= user.adminURL).become-admin Become a admin
+        a(href= user.url).become-member Become a member
+      else if user.membership === false && user.role === 'admin'
+        a(href= user.url).become-member Become a member
+      else if user.membership === true && user.role !== 'admin'
+        a(href= user.adminURL).become-admin Become a admin
+      ul
+        li.dropdown
+          a.dropbtn(href='/')= user.userName
+          .dropdown-content
+            div.dropdown-container
+              div Membership active
+              div.membership-status #{user.membership}
+              div Signed in as a
+              div.user-role= user.role
+              a(href='/log-out') Logout
+    form(action='', method="POST").add-message-form
+        .form-group 
+            label(for="title") Enter message title
+            input( type='text', name='title', id='title', required)
+        .form-group 
+            label(for="message") Enter your message
+            textarea( cols="30", rows="6", name='message', id='message', required)
+        .form-group
+            input(type="submit", value='submit') 

@@ -1,0 +1,44 @@
+extends layout 
+
+block content 
+    nav 
+      a(href= '/').title MembersOnly
+    form.sign-up-form(action="" method='POST')
+        .form-group
+            label(for="firstName") First name
+            input(type="text", name='firstName', id='firstName', value=formData ? formData.firstName : '')
+            if errorMessages && errorMessages.firstName
+                each error in errorMessages.firstName
+                    div.error= error
+        .form-group 
+            label(for="lastName") Last name
+            input(type="text", name='lastName', id='lastName', value=formData ? formData.lastName : '')
+            if errorMessages && errorMessages.lastName
+                each error in errorMessages.lastName
+                    div.error= error
+        .form-group 
+            label(for="userName") User name
+            input(type="text", name='userName', id='userName', value=formData ? formData.userName : '')
+            if errorMessages && errorMessages.userName
+                each error in errorMessages.userName
+                    div.error= error
+        .form-group 
+            label(for="email") Email
+            input(type="email", name='email', id='email', value=formData ? formData.email : '')
+            if errorMessages && errorMessages.email
+                each error in errorMessages.email
+                    div.error= error
+        .form-group 
+            label(for="password") Password
+            input(type="password", name='password', id='password', value=formData ? formData.password : '')
+            if errorMessages && errorMessages.password
+                each error in errorMessages.password
+                    div.error= error
+        .form-group 
+            label(for="passwordConfirmation") Confirm password
+            input(type="password", name='passwordConfirmation', id='passwordConfirmation', value=formData ? formData.passwordConfirmation : '')
+            if errorMessages && errorMessages.passwordConfirmation
+                each error in errorMessages.passwordConfirmation
+                    div.error= error
+        .form-group 
+            input(type="submit", value='submit')

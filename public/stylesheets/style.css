@@ -1,0 +1,247 @@
+:root {
+  padding: 0;
+  margin: 0;
+  --my-color: #faff81;
+}
+
+body {
+  font:
+    14px 'Lucida Grande',
+    Helvetica,
+    Arial,
+    sans-serif;
+  background-color: #000000;
+}
+
+a {
+  color: var(--my-color);
+}
+
+label {
+  display: block;
+}
+
+nav {
+  display: flex;
+  width: 100vw;
+  height: 80px;
+  gap: 20px;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav > .title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 40px;
+  color: var(--my-color);
+  margin-right: auto;
+  border: none;
+}
+
+nav > .title:hover {
+  color: var(--my-color);
+  background-color: transparent;
+  border: none;
+}
+
+.sign-up {
+  margin-right: 40px;
+}
+
+nav > a {
+  text-decoration: none;
+  border: 1px solid var(--my-color);
+  padding: 4px;
+  border-radius: 4px;
+}
+
+nav > a:hover {
+  background-color: var(--my-color);
+  color: black;
+}
+
+.messages {
+  margin-top: 100px;
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+}
+
+.message-container {
+  background-color: #212121;
+  border: 1px solid #212121;
+  padding: 20px;
+  display: grid;
+  gap: 5px;
+  border-radius: 8px;
+}
+
+.username {
+  color: rgb(172, 172, 172);
+  font-size: 12px;
+}
+
+.message-container > .title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.message-container > .delete-message {
+  text-decoration: none;
+  border: 1px solid var(--my-color);
+  padding: 4px;
+  border-radius: 4px;
+  width: max-content;
+  margin-top: 10px;
+}
+
+.message-container > .delete-message:hover {
+  background-color: var(--my-color);
+  color: black;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  margin-right: 40px;
+}
+
+.dropbtn {
+  color: var(--my-color);
+  text-decoration: none;
+  border: 1px solid var(--my-color);
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 21px;
+  background-color: #212121;
+  min-width: max-content;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px;
+  color: white;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropdown-container > .membership-status,
+.dropdown-container > .user-role {
+  font-weight: bold;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 4px;
+}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style dropdown links */
+.dropdown-content a {
+  background-color: var(--my-color);
+  color: black;
+  border: 1px solid var(--my-color);
+  border-radius: 4px;
+  padding: 4px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.dropdown-content a:hover {
+  background-color: transparent;
+  color: var(--my-color);
+}
+
+.add-message-form,
+.login-form,
+.sign-up-form,
+.membership-form,
+.add-admin-form {
+  display: grid;
+  justify-content: center;
+  margin-top: 100px;
+  gap: 10px;
+  grid-template-columns: 500px;
+}
+
+.form-group > input {
+  background-color: #212121;
+  border: none;
+  color: white;
+  padding: 10px 0;
+  width: 100%;
+  font-size: 15px;
+  border-radius: 8px;
+  caret-color: #faff81;
+}
+
+.form-group > input:focus {
+  outline: none;
+}
+
+.form-group > label {
+  color: white;
+  font-size: 15px;
+  /* margin-top: 10px; */
+  margin-bottom: 5px;
+}
+
+textarea {
+  background-color: #212121;
+  resize: none;
+  padding: 10px 0;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  caret-color: #faff81;
+  color: white;
+  width: 100%;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+input[type='submit'] {
+  background-color: #faff81;
+  color: black;
+  width: 100%;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+input[type='submit']:hover {
+  background-color: transparent;
+  color: #faff81;
+  border: 1px solid #faff81;
+}
+
+.form-group > div {
+  color: white;
+  margin-top: 5px;
+}
