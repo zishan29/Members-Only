@@ -9,6 +9,10 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const flash = require('express-flash');
 
+const compression = require('compression');
+const helmet = require('helmet');
+const RateLimit = require('express-rate-limit');
+
 const User = require('./models/user');
 
 const indexRouter = require('./routes/index');
@@ -25,6 +29,21 @@ db.on('error', console.error.bind(console, 'mongo connection error'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net'],
+    },
+  }),
+);
+
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+// Apply rate limiter to all requests
+app.use(limiter);
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,6 +57,10 @@ app.use((req, res, next) => {
   next();
 });
 app.use(flash());
+
+app.use(compression()); // Compress all routes
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
